@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get '/admins' => 'admins#index', as: :admin_root
   get '/students' => 'students#index', as: :student_root
 
-  namespace :admin do
+  resources :admin
+  scope :admin do
     root 'admins#index'
+    put 'set_admin/:id/:admin' => 'admins#set_admin', as: :set_admin
   end
 
   namespace :student do
