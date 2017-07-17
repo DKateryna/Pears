@@ -4,4 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   scope :all_students, -> { where(admin: :false) }
+  scope :all_admins, -> { where(admin: :true) }
 end

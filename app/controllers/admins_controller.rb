@@ -4,5 +4,6 @@ class AdminsController < ApplicationController
 
   def index
     @students = User.all_students
+    @admins = User.all_admins
    end
 end

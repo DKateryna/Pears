@@ -1,9 +1,17 @@
 <h1>Admin page</h1>
-<ul>
-  <% @students.each do |student| %>
-    <li>
-      <%= student.email %>
-    </li>
-  <% end %>
-
-</ul>
+<div class="panel-body">
+  <div class="panel panel-default" >
+    <% @admins.each do |admin| %>
+      <div class="panel-heading">
+        <%= admin.email %>
+      </div>
+    <% end %>
+  </div>
+  <div class="panel panel-default" >
+    <% @students.each do |student| %>
+      <div class="panel-heading">
+        <%= student.email %>
+      </div>
+    <% end %>
+  </div>
+</div>
