@@ -1,1 +1,9 @@
 <h1>Admin page</h1>
+<ul>
+  <% @students.each do |student| %>
+    <li>
+      <%= student.email %>
+    </li>
+  <% end %>
+
+</ul>
