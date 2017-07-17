@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: 'pages#home'
+  root 'pages#home'
+  get '/admins' => 'admins#index', as: :admin_root
+  get '/students' => 'students#index', as: :student_root
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    root 'admins#index'
+  end
+
+  namespace :student do
+    root 'students#index'
+  end
 end
