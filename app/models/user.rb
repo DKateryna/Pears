@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def pair_students
-    group = Array.new(User.all_students)
+    User.all_students
   end
 end
