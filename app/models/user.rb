@@ -6,4 +6,12 @@ class User < ApplicationRecord
 
   scope :all_students, -> { where(admin: :false) }
   scope :all_admins, -> { where(admin: :true) }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def admin?
+    admin == true
+  end
 end
