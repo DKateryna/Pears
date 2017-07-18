@@ -7,8 +7,8 @@
       </div>
       <% @admins.each do |admin| %>
         <div class="panel-heading">
-          <%= admin.email %>
-          <%= link_to 'Demote to student', set_admin_path(admin, 'false'), method: :patch , class: 'btn btn-default pull-right' %>
+          <%=" #{admin.first_name}  #{admin.last_name}" %>
+          <%= link_to 'Demote to student', set_admin_path(admin, 'false'), method: :patch , class: 'btn btn-default pull-right pull-up' %>
         </div>
       <% end %>
     </div>
@@ -19,8 +19,8 @@
       </div>
       <% @students.each do |student| %>
         <div class="panel-heading">
-          <%= student.email %>
-          <%= link_to 'Promote to admin', set_admin_path(student, 'true'), method: :patch , class: 'btn btn-default pull-right' %>
+          <%= "#{student.first_name}  #{student.last_name}" %>
+          <%= link_to 'Promote to admin', set_admin_path(student, 'true'), method: :patch , class: 'btn btn-default pull-right pull-up' %>
         </div>
       <% end %>
     </div>
