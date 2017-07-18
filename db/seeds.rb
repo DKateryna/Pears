@@ -9,3 +9,12 @@ user5 = User.create!(first_name: Faker::Name.first_name , last_name: Faker::Name
 user6 = User.create!(first_name: Faker::Name.first_name , last_name: Faker::Name.last_name ,email: 'tommy@cat6.com', password: '123456', admin: false)
 user7 = User.create!(first_name: Faker::Name.first_name , last_name: Faker::Name.last_name ,email: 'tommy@cat7.com', password: '123456', admin: false)
 user8 = User.create!(first_name: Faker::Name.first_name , last_name: Faker::Name.last_name ,email: 'tommy@cat8.com', password: '123456', admin: false)
+
+Pair.create!(user: user2, matched_id: user3.id)
+Pair.create!(user: user2, matched_id: user4.id)
+Pair.create!(user: user2, matched_id: user5.id)
+Pair.create!(user: user2, matched_id: user6.id)
+Pair.create!(user: user7, matched_id: user2.id)
+Pair.create!(user: user7, matched_id: user3.id)
+Pair.create!(user: user7, matched_id: user5.id)
+Pair.create!(user: user7, matched_id: user6.id)

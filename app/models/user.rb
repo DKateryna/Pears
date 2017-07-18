@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def admin?
     admin == true
   end
+
+  def pair_students
+    group = Array.new(User.all_students)
+  end
 end
