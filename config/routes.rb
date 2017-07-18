@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'pages#home'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+
   get '/admins' => 'admins#index', as: :admin_root
   get '/students' => 'students#index', as: :student_root
 
