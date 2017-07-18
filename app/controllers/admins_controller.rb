@@ -7,7 +7,7 @@ class AdminsController < ApplicationController
     @admins = User.all_admins
    end
 
-  def set_admin
+  def update
     user = User.find(params[:id])
     user.admin = params[:admin]
     user.save!
