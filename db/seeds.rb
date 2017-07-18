@@ -1,6 +1,6 @@
 User.destroy_all
 
-user1 = User.create!(email: 'tom@cat.com', password: '123456', admin: true)
+user1 = User.create!(first_name: "Tom" , last_name: "Cat" ,email: 'tom@cat.com', password: '123456', admin: true)
 
 user2 = User.create!(first_name: Faker::Name.first_name , last_name: Faker::Name.last_name ,email: 'tommy@cat2.com', password: '123456', admin: false)
 user3 = User.create!(first_name: Faker::Name.first_name , last_name: Faker::Name.last_name ,email: 'tommy@cat3.com', password: '123456', admin: false)

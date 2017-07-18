@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     stored_location_for(resource) ||
       if resource.is_a?(User) && resource.admin == true
-        admin_root_url
+        admins_root_url
       else
-        student_root_url
+        students_root_url
       end
   end
 end

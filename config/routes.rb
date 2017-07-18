@@ -5,16 +5,12 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  get '/admins' => 'admins#index', as: :admin_root
-  get '/students' => 'students#index', as: :student_root
-
-  patch 'update/:id/:admin' => 'admins#update', as: :set_admin
-
-  scope :admin do
-    root 'admins#index'
+  scope :admins do
+    root 'admins#index' , as: :admins_root
+    patch '/:id/:admin' => 'admins#update', as: :set_admin
   end
 
-  namespace :student do
-    root 'students#index'
+  scope :students do
+    root 'students#index' , as: :students_root
   end
 end

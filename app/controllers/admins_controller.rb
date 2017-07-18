@@ -11,6 +11,6 @@ class AdminsController < ApplicationController
     user = User.find(params[:id])
     user.admin = params[:admin]
     user.save!
-    redirect_to admin_root_path
+    redirect_to admins_root_path
   end
 end
