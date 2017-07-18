@@ -4,6 +4,4 @@ class Pair < ApplicationRecord
   def previous_matches_student(id)
     Pair.where(user_id:id)
   end
-
-
 end
