@@ -1,7 +1,7 @@
 class Pairing
 
   def initialize
-    @students = User.all_students.pluck(:id)
+    @students = User.all_students.order(id: :asc).pluck(:id)
     @student
     @matches
     @possibilities
@@ -11,6 +11,7 @@ class Pairing
   def select_student
     if @students.length == 1
       check_odd
+    end
     @student = @students.shift
   end
 
@@ -26,8 +27,6 @@ class Pairing
   def add_pairs
     match = @possibilities.sample
     @students.delete(match)
-
-    Pair.new(user: User.find(@student), matched_id: match)
 
     @student = User.find(@student)
     match = User.find(match)
@@ -47,10 +46,14 @@ class Pairing
   def create_pairs
     while !@students.empty?
       @student = select_student
+      if @students.length == 0
+        break;
+      end
       previous_matches_student(@student)
       possible_matches
       add_pairs
     end
+    @pairs.each {|pair| Pair.new(user: pair[0], matched_id: pair[1].id)}  
     return @pairs
   end
 end
