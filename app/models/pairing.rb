@@ -9,6 +9,8 @@ class Pairing
   end
 
   def select_student
+    if @students.length == 1
+      check_odd
     @student = @students.shift
   end
 
@@ -34,6 +36,12 @@ class Pairing
     match << @student
 
     @pairs << match
+  end
+
+  def check_odd
+    @student = @students.shift
+    @student = User.find(@student)
+    @pairs.sample << @student
   end
 
   def create_pairs
