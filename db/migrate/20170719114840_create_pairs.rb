@@ -3,6 +3,7 @@ class CreatePairs < ActiveRecord::Migration[5.1]
     create_table :pairs do |t|
       t.references :user, foreign_key: true
       t.integer :matched_id
+      t.datetime :date
 
       t.timestamps
     end
