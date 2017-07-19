@@ -3,10 +3,17 @@
   <div class="panel-body">
     <div class="panel panel-default" >
       <div class="panel-heading">
-        <h2>Admins</h2>
+        <div class="row">
+          <div class="col-md-7">
+            <h2>Admins</h2>
+          </div>
+          <div class="col-md-5">
+            <%= link_to 'Generate pairs', students_root_path, type:'button', class: 'btn btn-default pull-right mleft' %>
+          </div>
+        </div>
       </div>
       <% @admins.each do |admin| %>
-        <div class="panel-heading">
+        <div class="panel-heading panel-height">
           <%=" #{admin.first_name}  #{admin.last_name}" %>
           <%= link_to 'Demote to student', set_admin_path(admin, 'false'), method: :patch , class: 'btn btn-default pull-right pull-up' %>
         </div>
@@ -18,7 +25,7 @@
         <h2>Students</h2>
       </div>
       <% @students.each do |student| %>
-        <div class="panel-heading">
+        <div class="panel-heading panel-height">
           <%= "#{student.first_name}  #{student.last_name}" %>
           <%= link_to 'Promote to admin', set_admin_path(student, 'true'), method: :patch , class: 'btn btn-default pull-right pull-up' %>
         </div>
