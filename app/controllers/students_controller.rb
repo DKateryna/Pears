@@ -2,8 +2,7 @@ class StudentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    pairing = Pairing.new
-    @pairs = pairing.create_pairs
+    @pairing = Pairing.new
   end
 
   private

@@ -17,12 +17,16 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ .panel-height {
+   font-size: 17px;
+ }
+
  .spacer-login{
     height: 50vh;
  }
 
  .pull-up {
-   margin-top: -7px;
+   margin-top: -4px ;
  }
 
  .signupbar {
@@ -32,4 +36,16 @@
  img {
   display: block;
   margin: 0 auto;
+ }
+
+ .mleft {
+   margin-left: 4px;
+ }
+
+ .pull-down {
+   margin-top: 20px;
+ }
+
+ .panel-height {
+   min-height: 47px;
  }

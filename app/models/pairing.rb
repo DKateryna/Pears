@@ -16,7 +16,7 @@ class Pairing
   end
 
   def previous_matches_student(student)
-    @matches = Pair.where(user_id:student).pluck(:matched_id)
+    @matches = Pair.where(user_id:student).pluck(:matched_id) #go back for half the length of the students max 5 days (use sql)
     @matches.uniq
   end
 
@@ -53,7 +53,14 @@ class Pairing
       possible_matches
       add_pairs
     end
-    @pairs.each {|pair| Pair.new(user: pair[0], matched_id: pair[1].id)}  
     return @pairs
+  end
+
+  def save_pairs
+    @pairstosave = []
+     @pairs.each { |pair|
+      @pairstosave << Pair.new(user: pair[0], matched_id: pair[1].id)
+     }
+     return @pairstosave
   end
 end
