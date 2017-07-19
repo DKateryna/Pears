@@ -17,7 +17,7 @@ class Pairing
 
   def previous_matches_student(student)
     @matches = Pair.where(user_id:student).pluck(:matched_id) #go back for half the length of the students max 5 days (use sql)
-    @matches.uniq
+    @matches.uniq!
   end
 
   def possible_matches

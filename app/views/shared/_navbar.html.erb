@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? && current_user.admin? %>
           <li><%= link_to "Admin Overview", admins_root_path%></li>
-          <li><%= link_to "Pairs Overview", students_root_path %></li>
+          <li><%= link_to "Generate pairs", students_root_path %></li>
         <% end %>
 
         <% if !user_signed_in? %>
