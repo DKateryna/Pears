@@ -2,14 +2,18 @@ class Pairing
 
   def initialize
     @students = User.all_students.pluck(:id)
+    @student
+    @matches
+    @possibilities
+    @pairs = []
   end
 
-  def selected_student
-    @students.shift
+  def select_student
+    @student = @students.shift
   end
 
-  def previous_matches_student
-    @matches = Pair.where(user_id:selected_student).pluck(:matched_id)
+  def previous_matches_student(student)
+    @matches = Pair.where(user_id:student).pluck(:matched_id)
     @matches.uniq
   end
 
@@ -21,28 +25,24 @@ class Pairing
     match = @possibilities.sample
     @students.delete(match)
 
-    match = [match]
-    match << student
+    Pair.new(user: User.find(@student), matched_id: match)
 
-    @pairs = []
+    @student = User.find(@student)
+    match = User.find(match)
+
+    match = [match]
+    match << @student
+
     @pairs << match
   end
 
+  def create_pairs
+    while !@students.empty?
+      @student = select_student
+      previous_matches_student(@student)
+      possible_matches
+      add_pairs
+    end
+    return @pairs
+  end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-students = User.all_students.pluck(:id)
-student = students.shift
-matches = Pair.where(user_id:student).pluck(:matched_id)
-possibilities = students - matches

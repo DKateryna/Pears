@@ -1,3 +1,17 @@
-<h1>Student's page</h1>
+<div class="panel panel-default">
 
-<% @pairs.each { |pair| print pair } %>
+  <div class="panel-body">
+    <div class="panel panel-default" >
+      <div class="panel-heading">
+        <h2>Pairs</h2>
+      </div>
+      <% @pairs.each do |pair| %>
+        <div class="panel-heading">
+          <%=" #{pair[0].first_name}  #{pair[0].last_name}" %>
+          +
+          <%=" #{pair[1].first_name}  #{pair[1].last_name}" %>
+        </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
