@@ -1,4 +1,5 @@
 User.destroy_all
+Pair.destroy_all
 
 user1 = User.create!(first_name: "Tom" , last_name: "Cat" ,email: 'tom@cat.com', password: '123456', admin: true)
 
