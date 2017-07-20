@@ -41,7 +41,11 @@ class Pair < ApplicationRecord
   def check_odd
     @student = @students.shift
     @student = User.find(@student)
-    @pairs.sample << @student
+    if @pairs.length < 1
+      @pairs << @student
+    else
+      @pairs.sample << @student
+    end
   end
 
   def create_pairs
