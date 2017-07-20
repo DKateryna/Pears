@@ -30,11 +30,6 @@ class Pair < ApplicationRecord
   end
 
   def self.add_pairs
-    if @pairs == nil
-      @pairs = []
-    else
-      @pairs
-    end
     match = @possibilities.sample
     @students.delete(match)
 
@@ -53,9 +48,8 @@ class Pair < ApplicationRecord
     @student = @students.shift
     @student = User.find(@student)
 
-    if @pairs == nil 
+    if @pairs == []
 
-      @pairs = []
       @pairs << @student
     else
       @pairs.sample << @student
