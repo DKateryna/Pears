@@ -27,7 +27,11 @@ class Pair < ApplicationRecord
   end
 
   def self.add_pairs
-    @pairs = []
+    if @pairs == nil
+      @pairs = []
+    else
+      @pairs
+    end
     match = @possibilities.sample
     @students.delete(match)
 
@@ -42,7 +46,7 @@ class Pair < ApplicationRecord
 
   def self.check_odd
     return unless @students.length == 1
-    
+
     @student = @students.shift
     @student = User.find(@student)
     if @pairs == nil
@@ -54,6 +58,7 @@ class Pair < ApplicationRecord
   end
 
   def self.create_pairs
+    @pairs = []
     @students = User.all_students.ordered.pluck(:id)
 
     while !@students.empty?
