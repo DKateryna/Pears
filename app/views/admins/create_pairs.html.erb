@@ -4,10 +4,11 @@
     <div class="panel panel-default" >
       <div class="panel-heading">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-7">
             <h2>Generate pairs</h2>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-5">
+            <%= datetime_local_field :day, class: "form-control pull-right pull-down" %>
             <%= link_to 'Save', pairs_path( @pairs ), method: :post , class: 'btn btn-default pull-right pull-down mleft' %>
             <%= link_to 'Generate pairs', pairs_path , method: :get, class: 'btn btn-default pull-right pull-down' %>
           </div>
