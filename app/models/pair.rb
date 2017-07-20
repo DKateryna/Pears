@@ -1,31 +1,33 @@
 class Pair < ApplicationRecord
   belongs_to :user
+  after_initialize :set_instance_vars
+  scope :get_student, -> { where(user_id: @student) }
 
-  def initialize
-    @students = User.all_students.order(id: :asc).pluck(:id)
+
+  def set_instance_vars
+    @students
     @student
     @matches
     @possibilities
-    @pairs = []
+    @pairs
   end
 
-  def select_student
-    if @students.length == 1
-      check_odd
-    end
+  def self.select_student
+    check_odd
     @student = @students.shift
   end
 
-  def previous_matches_student(student)
-    @matches = Pair.where(user_id:student).pluck(:matched_id) #go back for half the length of the students max 5 days (use sql)
+  def self.previous_matches_student(student)
+    @matches = Pair.get_student.pluck(:matched_id) #go back for half the length of the students max 5 days (use sql)
     @matches.uniq
   end
 
-  def possible_matches
+  def self.possible_matches
     @possibilities = @students - @matches
   end
 
-  def add_pairs
+  def self.add_pairs
+    @pairs = []
     match = @possibilities.sample
     @students.delete(match)
 
@@ -38,7 +40,9 @@ class Pair < ApplicationRecord
     @pairs << match
   end
 
-  def check_odd
+  def self.check_odd
+    return unless @students.length == 1
+
     @student = @students.shift
     @student = User.find(@student)
     if @pairs.length < 1
@@ -48,7 +52,9 @@ class Pair < ApplicationRecord
     end
   end
 
-  def create_pairs
+  def self.create_pairs
+    @students = User.all_students.ordered.pluck(:id)
+
     while !@students.empty?
       @student = select_student
       if @students.length == 0
@@ -61,7 +67,7 @@ class Pair < ApplicationRecord
     return @pairs
   end
 
-  def save_pairs
+  def self.save_pairs
     @pairtosave
      @pairs.each { |pair|
        if pair.length == 2

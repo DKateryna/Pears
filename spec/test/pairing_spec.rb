@@ -16,7 +16,7 @@ describe "Should pair two students" do
 
   it "works for 2 students" do
 
-    result = Pair.new.create_pairs
+    result = Pair.create_pairs
     expect(result.length).to be(1)
   end
 end
@@ -27,7 +27,7 @@ describe "Should pair three students" do
   let!(:user3) { create :user, first_name: "Joe", email: "c@w.com", password: "d@w.com", admin: false}
 
   it "works for 3 students" do
-    result = Pair.new.create_pairs
+    result = Pair.create_pairs
 
     expect(result.length).to be(1)
   end

@@ -53,6 +53,7 @@ group :development, :test do
   gem 'capybara', '~> 2.9', '>= 2.9.1'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  gem "pry-rails"
 end
 
 group :test do
