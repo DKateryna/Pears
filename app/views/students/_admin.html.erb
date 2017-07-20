@@ -3,7 +3,14 @@
   <div class="panel-body">
     <div class="panel panel-default" >
       <div class="panel-heading">
-        <h2>Generate pairs</h2>
+        <div class="row">
+          <div class="col-md-8">
+            <h2>Generate pairs</h2>
+          </div>
+          <div class="col-md-4">
+            <%= button_to 'Save', students_root_path, action:  "save" , class: 'btn btn-default pull-right pull-down mleft' %>
+            <%= button_to 'Generate pairs', students_root_path, action: "generate_pairs" , class: 'btn btn-default pull-right pull-down' %>
+          </div>
       </div>
       <% if @pairs %>
         <% @pairs.each do |pair| %>
@@ -22,3 +29,4 @@
     </div>
     </div>
   </div>
+</div>
