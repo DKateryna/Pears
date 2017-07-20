@@ -73,18 +73,23 @@ class Pair < ApplicationRecord
     return @pairs
   end
 
-  def self.save_pairs
-    @pairtosave
-     @pairs.each { |pair|
+  def self.save_pairs(pairs)
+    pairs.each { |pair|
        if pair.length == 2
-         @pairtosave = Pair.new(user: pair[0], matched_id: pair[1].id)
+         person1 = User.find(pair[0]["id"])
+         person2 = User.find(pair[1]["id"])
+         @pairtosave = Pair.new(user: person1, matched_id: person2.id)
          @pairtosave.save
        else
-         @pairtosave = Pair.new(user: pair[0], matched_id: pair[1].id)
+         person1 = User.find(pair[0]["id"])
+         person2 = User.find(pair[1]["id"])
+         person3 = User.find(pair[2]["id"])
+
+         @pairtosave = Pair.new(user: person1, matched_id: person2.id)
          @pairtosave.save
-         @pairtosave = Pair.new(user: pair[0], matched_id: pair[2].id)
+         @pairtosave = Pair.new(user: person1, matched_id: person3.id)
          @pairtosave.save
-         @pairtosave = Pair.new(user: pair[1], matched_id: pair[2].id)
+         @pairtosave = Pair.new(user: person2, matched_id: person3.id)
          @pairtosave.save
        end
      }
