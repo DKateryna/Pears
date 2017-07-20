@@ -21,12 +21,7 @@ class AdminsController < ApplicationController
 
   def save_pairs
     pairs = session[:pairs]
+    session.delete(:pairs)
     Pair.save_pairs(pairs)
   end
 end
-
-# def pair_params
-#   params
-#   .require(:pair)
-#   .permit(:)
-# end
