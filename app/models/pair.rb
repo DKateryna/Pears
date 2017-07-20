@@ -21,7 +21,7 @@ class Pair < ApplicationRecord
     @students.count.even? ? (day = @students.length - 1) : (day = @students.length - 2)
     day == 5 if day > 5
 
-    @matches = Pair.get_student.where("DATE(created_at) = ?", Date.today - day.days).pluck(:matched_id) #go back for half the length of the students max 5 days (use sql)
+    @matches = Pair.get_student.pluck(:matched_id) #go back for half the length of the students max 5 days (use sql)
     @matches.uniq
   end
 
@@ -30,16 +30,13 @@ class Pair < ApplicationRecord
   end
 
   def self.add_pairs
-    match = @possibilities.sample
+    match = @possibilities[0]#.sample
     @students.delete(match)
 
     @student = User.find(@student)
     match = User.find(match)
 
-    match = [match]
-    match << @student
-
-    @pairs << match
+    @pairs << [@student, match]
   end
 
   def self.check_odd
@@ -50,7 +47,7 @@ class Pair < ApplicationRecord
 
     if @pairs == []
 
-      @pairs << @student
+      @pairs << [@student]
     else
       @pairs.sample << @student
     end
