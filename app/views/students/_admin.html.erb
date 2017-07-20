@@ -9,7 +9,7 @@
           </div>
           <div class="col-md-4">
             <%= button_to 'Save', students_root_path, action:  "save" , class: 'btn btn-default pull-right pull-down mleft' %>
-            <%= button_to 'Generate pairs', students_root_path, action: "generate_pairs" , class: 'btn btn-default pull-right pull-down' %>
+            <%= button_to 'Generate pairs', students_root_path, method: :get "generate_pairs" , class: 'btn btn-default pull-right pull-down' %>
           </div>
       </div>
       <% if @pairs %>
