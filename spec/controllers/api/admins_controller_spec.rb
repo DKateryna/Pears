@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe API::AdminsController, :type => :controller do
+describe Api::AdminsController, type: :controller do
   describe "GET 'index' " do
     let!(:user1) { create :user, first_name: "one", email: "1@t.com", password: "a@w.com", admin: false}
     let!(:user2) { create :user, first_name: "two", email: "2@w.com", password: "s@w.com", admin: false}

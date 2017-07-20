@@ -1,4 +1,4 @@
-class API::AdminsController < ApplicationController
+class Api::AdminsController < ApplicationController
 
   def index
     render status: 200, json: {
