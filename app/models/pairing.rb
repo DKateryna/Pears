@@ -59,7 +59,13 @@ class Pairing
   def save_pairs
     @pairstosave = []
      @pairs.each { |pair|
-      @pairstosave << Pair.new(user: pair[0], matched_id: pair[1].id)
+       if pair.length == 2
+         @pairstosave << Pair.new(user: pair[0], matched_id: pair[1].id)
+       else
+         @pairstosave << Pair.new(user: pair[0], matched_id: pair[1].id)
+         @pairstosave << Pair.new(user: pair[0], matched_id: pair[2].id)
+         @pairstosave << Pair.new(user: pair[1], matched_id: pair[2].id)
+       end
      }
      return @pairstosave
   end
