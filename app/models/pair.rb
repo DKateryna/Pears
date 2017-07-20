@@ -18,7 +18,10 @@ class Pair < ApplicationRecord
   end
 
   def self.previous_matches_student(student)
-    @matches = Pair.get_student.pluck(:matched_id) #go back for half the length of the students max 5 days (use sql)
+    @students.count.even? ? (day = @students.length - 1) : (day = @students.length - 2)
+    day == 5 if day > 5
+
+    @matches = Pair.get_student.where("DATE(created_at) = ?", Date.today - day.days).pluck(:matched_id) #go back for half the length of the students max 5 days (use sql)
     @matches.uniq
   end
 
@@ -49,7 +52,9 @@ class Pair < ApplicationRecord
 
     @student = @students.shift
     @student = User.find(@student)
+
     if @pairs == nil 
+
       @pairs = []
       @pairs << @student
     else

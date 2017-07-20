@@ -13,8 +13,24 @@ Rails.application.routes.draw do
     get "pairs" => "admins#create_pairs"
     post "pairs" => "admins#save_pairs"
   end
-
+  
   scope :students do
     root 'students#index' , as: :students_root
+  end
+
+  namespace :api do
+  scope :admins do
+    root 'admins#index' , as: :admins_root
+    patch '/:id/:admin' => 'admins#update', as: :set_admin
+
+    get "pairs" => "admins#create_pairs"
+    post "pairs" => "admins#save_pairs"
+  end
+end
+
+  namespace :api do
+    scope :students do
+      root 'students#index' , as: :students_root
+    end
   end
 end
