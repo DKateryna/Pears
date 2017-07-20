@@ -5,9 +5,12 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
+
   scope :admins do
     root 'admins#index' , as: :admins_root
     patch '/:id/:admin' => 'admins#update', as: :set_admin
+
+    get "pairs" => "students#create_pairs"
   end
 
   scope :students do
