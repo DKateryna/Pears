@@ -52,7 +52,9 @@ class Pair < ApplicationRecord
 
     @student = @students.shift
     @student = User.find(@student)
-     if @pairs == nil || []
+
+    if @pairs == nil 
+
       @pairs = []
       @pairs << @student
     else
