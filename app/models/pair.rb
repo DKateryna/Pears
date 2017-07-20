@@ -42,10 +42,10 @@ class Pair < ApplicationRecord
 
   def self.check_odd
     return unless @students.length == 1
-
     @student = @students.shift
     @student = User.find(@student)
-    if @pairs.length < 1
+    if @pairs == nil
+      @pairs = []
       @pairs << @student
     else
       @pairs.sample << @student
