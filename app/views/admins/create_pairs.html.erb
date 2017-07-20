@@ -8,7 +8,7 @@
             <h2>Generate pairs</h2>
           </div>
           <div class="col-md-4">
-            <%= button_to 'Save', students_root_path, action:  "save" , class: 'btn btn-default pull-right pull-down mleft' %>
+            <%= link_to 'Save', pairs_path( @pairs ), method: :post , class: 'btn btn-default pull-right pull-down mleft' %>
             <%= link_to 'Generate pairs', pairs_path , method: :get, class: 'btn btn-default pull-right pull-down' %>
           </div>
         </div>

@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     root 'admins#index' , as: :admins_root
     patch '/:id/:admin' => 'admins#update', as: :set_admin
 
-    get "pairs" => "students#create_pairs"
+    get "pairs" => "admins#create_pairs"
+    post "pairs" => "admins#save_pairs"
   end
 
   scope :students do

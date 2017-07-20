@@ -13,4 +13,12 @@ class AdminsController < ApplicationController
     user.save!
     redirect_to admins_root_path
   end
+
+  def create_pairs
+    @pairs = Pair.create_pairs
+  end
+
+  def save_pairs
+    @pairs.save_pairs
+  end
 end
