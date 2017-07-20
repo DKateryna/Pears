@@ -5,7 +5,7 @@ describe "Should pair one students" do
 
   it "works for 1 students" do
 
-    result = Pair.new.create_pairs
+    result = Pair.create_pairs
     expect(result.length).to be(1)
   end
 end
