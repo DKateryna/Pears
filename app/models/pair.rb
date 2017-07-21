@@ -1,8 +1,6 @@
 class Pair < ApplicationRecord
   belongs_to :user
   after_initialize :set_instance_vars
-  # scope :get_student, -> { where(user_id: @student) }
-
 
   def set_instance_vars
     @students
@@ -19,15 +17,12 @@ class Pair < ApplicationRecord
 
 
   def self.previous_matches_student
-    # @students.count.even? ? (day = @students.length - 1) : (day = @students.length - 2)
-    # day == 5 if day > 5
-# ("user_id = ? and DATE(created_at) = ?",2, Date.today - day.days)
-    @matches = Pair.where(user_id: @student).pluck(:user1, :user2)
-    @matches += Pair.where(user1: @student).pluck(:user_id, :user2)
-    @matches += Pair.where(user2: @student).pluck(:user_id, :user1)
+    @students.count.even? ? (day = @students.length - 1) : (day = @students.length - 2)
+    @matches = Pair.where(user_id:@student).or(Pair.where(user1:@student)).or(Pair.where(user2: @student)).limit(day).pluck(:user_id, :user1, :user2)
     @matches = @matches.flatten
     @matches.select! { |x| !x.nil? }
     @matches = @matches.uniq.sort
+    @students.delete(@student)
 
   end
 
