@@ -8,7 +8,12 @@
             <h2>Generate pairs</h2>
           </div>
           <div class="col-md-5 ">
-            <div class="pull-down datefield"><%= date_field :day, :date %></div>
+            <%= form_for @date do |f| %>
+              <div class="pull-down datefield">
+                <%= f.date_field :day %>
+                <%= f.submit "Select Date", pairs_path, method: :post , class: 'btn btn-default pull-up-buttons'%>
+              </div>
+            <% end %>
             <%= link_to  'Save', pairs_path, method: :post , class: 'btn btn-default pull-up-buttons pull-right mleft' %>
             <%= link_to 'Generate pairs', pairs_path , method: :get, class: 'btn btn-default pull-up-buttons pull-right' %>
           </div>
