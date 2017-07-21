@@ -10,7 +10,13 @@
       </div>
       <% @pairs.each do |pair| %>
         <div class="panel-heading">
-            <%=" #{pair.user.first_name}  #{pair.matched_id}" %>
+            <%="#{pair[1].first_name} #{pair[1].last_name} "%>          
+            +
+            <%="#{pair[0].first_name} #{pair[0].last_name} "%>
+            <% if pair[2] %>
+            +
+            <%="#{pair[2].first_name} #{pair[2].last_name} "%>
+            <% end %>
         </div>
       <% end %>
     </div>

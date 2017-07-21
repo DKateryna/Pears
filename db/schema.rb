@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719114840) do
+ActiveRecord::Schema.define(version: 20170720174616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "pairs", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "matched_id"
-    t.datetime "date"
+    t.integer "user1"
+    t.integer "user2"
+    t.datetime "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_pairs_on_user_id"

@@ -2,6 +2,6 @@ class StudentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @pairs = Pair.where("user = '?' OR matched_id = '?'", current_user.id, current_user.id)
+    @pairs = Pair.find_users(current_user)
   end
 end
