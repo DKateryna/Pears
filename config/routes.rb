@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get "pairs" => "admins#create_pairs"
     post "pairs" => "admins#save_pairs"
   end
-  
+
   scope :students do
     root 'students#index' , as: :students_root
   end
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     patch '/:id/:admin' => 'admins#update', as: :set_admin
 
     get "pairs" => "admins#create_pairs"
-    post "pairs" => "admins#save_pairs"
+    post "pairs/:date" => "admins#save_pairs"
   end
 end
 

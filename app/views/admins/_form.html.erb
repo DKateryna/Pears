@@ -1,5 +1,0 @@
-<%= form_for @date do |f| %>
-  <div class="pull-down datefield"><%= date_field :day, class: "form-control" %></div>
-  <%= f.submit  'Save', pairs_path( @pairs ), method: :post , class: 'btn btn-default pull-up-buttons pull-right mleft' %>
-  <%= link_to 'Generate pairs', pairs_path , method: :get, class: 'btn btn-default pull-up-buttons pull-right' %>
-<% end %>
