@@ -8,6 +8,7 @@ class User < ApplicationRecord
   scope :all_admins, -> { where(admin: :true) }
   scope :ordered, -> { order(id: :asc) }
 
+
   def full_name
     "#{first_name} #{last_name}"
   end
