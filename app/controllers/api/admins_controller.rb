@@ -7,4 +7,12 @@ class Api::AdminsController < ApplicationController
     }.to_json
   end
 
+  def update
+    user = User.find(params[:id])
+    user.admin = params[:admin]
+
+    user.save!
+    render status: 204, json: {
+    }.to_json
+  end
 end

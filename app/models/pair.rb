@@ -17,6 +17,7 @@ class Pair < ApplicationRecord
     @student = @students.shift
   end
 
+
   def self.previous_matches_student
     # @students.count.even? ? (day = @students.length - 1) : (day = @students.length - 2)
     # day == 5 if day > 5
@@ -27,6 +28,7 @@ class Pair < ApplicationRecord
     @matches = @matches.flatten
     @matches.select! { |x| !x.nil? }
     @matches = @matches.uniq.sort
+
   end
 
   def self.possible_matches
@@ -38,20 +40,19 @@ class Pair < ApplicationRecord
   end
 
   def self.add_pairs
+
     if  @possibilities.length == 1
       match = @possibilities[0]
     else
       match = @possibilities.sample
     end
+
     @students.delete(match)
 
     @student = User.find(@student)
     match = User.find(match)
 
-    match = [match]
-    match << @student
-
-    @pairs << match
+    @pairs << [@student, match]
   end
 
   def self.check_odd
@@ -62,7 +63,7 @@ class Pair < ApplicationRecord
 
     if @pairs == []
 
-      @pairs << @student
+      @pairs << [@student]
     else
       @pairs.sample << @student
     end

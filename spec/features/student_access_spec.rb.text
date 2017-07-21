@@ -1,0 +1,15 @@
+require 'rails_helper'
+describe 'admins/index.html.erb' do
+  describe "Student shouln't have an access to admin routes" do
+    context 'when user is logged in' do
+      before { login_as user }
+      let!(:user) { create :user,email: "1@a.com", password: "qwer12", admin: false }
+
+      it 'gives 404 , access denied' do
+        visit admins_root_path
+        expect{get :index}.to raise_error(CanCan::AccessDenied)
+        # expect(rendered).to respond_with(404)
+      end
+    end
+  end
+end
