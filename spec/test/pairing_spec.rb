@@ -29,7 +29,7 @@ describe "Should pair three students" do
   it "works for 3 students" do
     result = Pair.create_pairs
 
-    expect(result).to eq([[user1, user2, user3]])
+    expect(result).to match_array([[user1, user2, user3]])
   end
 end
 
@@ -39,12 +39,8 @@ describe "Should pair four students" do
   let!(:user3) { create :user, first_name: "Joe", email: "3@w.com", password: "d@w.com", admin: false}
   let!(:user4) { create :user, first_name: "Joe", email: "4@w.com", password: "d@w.com", admin: false}
 
-   let!(:match1) {create :pair, user: user1, matched_id: user2.id}
-   let!(:match2) {create :pair, user: user3, matched_id: user4.id}
-
-
   it "works for 4 students" do
     result = Pair.create_pairs
-    expect(result).to eq([[user1, user3], [user2, user4]])
+    expect(result).to match_array([[user1, user3], [user2, user4]])
   end
 end
