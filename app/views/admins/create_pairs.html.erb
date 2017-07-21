@@ -9,22 +9,26 @@
           </div>
           <div class="col-md-5 ">
             <div class="pull-down datefield"><%= date_field :day, :date %></div>
-            <% day = ("#day_date") %>
-            <%= link_to  'Save', pairs_path(:date, day), method: :post , class: 'btn btn-default pull-up-buttons pull-right mleft' %>
+            <%= link_to  'Save', pairs_path, method: :post , class: 'btn btn-default pull-up-buttons pull-right mleft' %>
             <%= link_to 'Generate pairs', pairs_path , method: :get, class: 'btn btn-default pull-up-buttons pull-right' %>
           </div>
         </div>
       </div>
         <% @pairs.each do |pair| %>
           <div class="panel-heading">
-              <%=" #{pair[0].first_name}  #{pair[0].last_name}" %>
-              +
-              <%=" #{pair[1].first_name}  #{pair[1].last_name}" %>
-
-              <% if pair[2] %>
-              +
-                <%=" #{pair[2].first_name}  #{pair[2].last_name}" %>
-              <% end %>
+            <div class="row fsize">
+              <div class="col-md-4">
+                <%=" #{pair[0].first_name}  #{pair[0].last_name}" %>
+              </div>
+              <div class="col-md-4">
+                <%=" #{pair[1].first_name}  #{pair[1].last_name}" %>
+              </div>
+              <div class="col-md-4">
+                <% if pair[2] %>
+                  <%=" #{pair[2].first_name}  #{pair[2].last_name}" %>
+                <% end %>
+              </div>
+            </div>
           </div>
         <% end %>
     </div>
