@@ -14,8 +14,7 @@
  *= require_self
  */
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
+
 
  .panel-height {
    font-size: 17px;
@@ -43,9 +42,18 @@
  }
 
  .pull-down {
-   margin-top: 20px;
+   margin-top: 30px;
  }
 
  .panel-height {
    min-height: 47px;
+ }
+
+ .datefield {
+   width: 170px;
+   margin-left: 60px;
+ }
+
+ .pull-up-buttons{
+   margin-top: -32px;
  }

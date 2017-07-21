@@ -2,6 +2,10 @@ class StudentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @pairs = Pair.find_users(current_user)
+    if current_user.admin == false
+      @pairs = Pair.find_users(current_user)
+    else
+      @pairs = Pair.find_all_users
+    end
   end
 end

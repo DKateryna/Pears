@@ -20,8 +20,11 @@ class AdminsController < ApplicationController
   end
 
   def save_pairs
+    @date = Pair.new
+    @date.day = params(:date)
     pairs = session[:pairs]
     session.delete(:pairs)
     Pair.save_pairs(pairs)
+    :date
   end
 end

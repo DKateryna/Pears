@@ -17,7 +17,11 @@ class Pair < ApplicationRecord
 
 
   def self.previous_matches_student
-    @students.count.even? ? (day = @students.length - 1) : (day = @students.length - 2)
+    if @students.length > 2
+      @students.count.even? ? (day = @students.length - 1) : (day = @students.length - 2)
+    else
+      day = 2
+    end
     @matches = Pair.where(user_id:@student).or(Pair.where(user1:@student)).or(Pair.where(user2: @student)).limit(day).pluck(:user_id, :user1, :user2)
     @matches = @matches.flatten
     @matches.select! { |x| !x.nil? }
@@ -113,7 +117,22 @@ class Pair < ApplicationRecord
       end
       @pairsarray << pear
     }
-    puts @pairsarray
+    return @pairsarray
+  end
+
+  def self.find_all_users
+    @pairs = Pair.all
+    @pairsarray = []
+
+    @pairs.each { |pair|
+      pear = []
+      pear << pair.user
+      pear << User.find(pair.user1)
+      unless pair.user2 == nil
+        pear << User.find(pair.user2)
+      end
+      @pairsarray << pear
+    }
     return @pairsarray
   end
 end
