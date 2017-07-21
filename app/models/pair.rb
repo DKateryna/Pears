@@ -15,13 +15,16 @@ class Pair < ApplicationRecord
     @student = @students.shift
   end
 
-
-  def self.previous_matches_student
+  def self.how_far_back
     if @students.length > 2
       @students.count.even? ? (day = @students.length - 1) : (day = @students.length - 2)
     else
       day = 2
     end
+  end
+
+  def self.previous_matches_student
+    day = how_far_back
     @matches = Pair.where(user_id:@student).or(Pair.where(user1:@student)).or(Pair.where(user2: @student)).limit(day).pluck(:user_id, :user1, :user2)
     @matches = @matches.flatten
     @matches.select! { |x| !x.nil? }
@@ -110,6 +113,7 @@ class Pair < ApplicationRecord
 
     @pairs.each { |pair|
       pear = []
+      pear << pair.created_at
       pear << pair.user
       pear << User.find(pair.user1)
       unless pair.user2 == nil
@@ -126,6 +130,7 @@ class Pair < ApplicationRecord
 
     @pairs.each { |pair|
       pear = []
+      pear << pair.created_at
       pear << pair.user
       pear << User.find(pair.user1)
       unless pair.user2 == nil

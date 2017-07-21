@@ -24,13 +24,22 @@
           </div>
           <% @pairs.each do |pair| %>
             <div class="panel-heading">
-                <%="#{pair[1].first_name} #{pair[1].last_name} "%>
-                +
-                <%="#{pair[0].first_name} #{pair[0].last_name} "%>
-                <% if pair[2] %>
-                +
-                <%="#{pair[2].first_name} #{pair[2].last_name} "%>
-                <% end %>
+              <div class="row datestyle">
+                <%=" #{pair[0]}" %>
+              </div>
+              <div class="row fsize">
+                <div class="col-md-4">
+                  <%=" #{pair[1].first_name}  #{pair[1].last_name}" %>
+                </div>
+                <div class="col-md-4">
+                  <%=" #{pair[2].first_name}  #{pair[2].last_name}" %>
+                </div>
+                <div class="col-md-4">
+                  <% if pair[3] %>
+                    <%=" #{pair[3].first_name}  #{pair[3].last_name}" %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>
