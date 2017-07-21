@@ -20,10 +20,9 @@ class AdminsController < ApplicationController
   end
 
   def save_pairs
-    day = params.require(:date).permit(:day)
     pairs = session[:pairs]
     session.delete(:pairs)
-    Pair.save_pairs(pairs, day)
+    Pair.save_pairs(pairs)
   end
 
 

@@ -30,7 +30,6 @@ class Pair < ApplicationRecord
     @matches.select! { |x| !x.nil? }
     @matches = @matches.uniq.sort
     @students.delete(@student)
-
   end
 
   def self.possible_matches
@@ -87,25 +86,25 @@ class Pair < ApplicationRecord
     return @pairs
   end
 
-  def self.save_pairs(pairs, day)
+  def self.save_pairs(pairs)
     pairs.each { |pair|
        if pair.length == 2
          person1 = User.find(pair[0]["id"])
          person2 = User.find(pair[1]["id"])
-         @pairtosave = Pair.new(user: person1, user1: person2.id, day: day)
+         @pairtosave = Pair.new(user: person1, user1: person2.id)
          @pairtosave.save
        else
          person1 = User.find(pair[0]["id"])
          person2 = User.find(pair[1]["id"])
          person3 = User.find(pair[2]["id"])
 
-         @pairtosave = Pair.new(user: person1, user1: person2.id, user2: person3.id, day: day)
+         @pairtosave = Pair.new(user: person1, user1: person2.id, user2: person3.id)
          @pairtosave.save
        end
      }
   end
 
-  def self.find_users(current_user)
+  def self.find_user(current_user)
     @pairs = Pair.where(user: current_user.id.to_s)
     @pairs += Pair.where(user1: current_user.id.to_s)
     @pairs += Pair.where(user2: current_user.id.to_s)

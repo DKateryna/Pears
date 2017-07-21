@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
 
   def index
     if current_user.admin == false
-      @pairs = Pair.find_users(current_user)
+      @pairs = Pair.find_user(current_user)
     else
       @pairs = Pair.find_all_users
     end
