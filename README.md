@@ -1,24 +1,10 @@
-# README
+# Find Your Match!- Ruby on Rails practice application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Implemented in pair with @Michiel87
 
-Things you may want to cover:
+Featuring:
 
-* Ruby version
+* Complex pairing algorithm
+* Unit and integration tests
+* CanCanCan integration
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
